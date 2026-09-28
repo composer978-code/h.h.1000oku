@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>💖 H.H. 1000억 갸루코어 플렉스 💖</title>
+    <!-- 폰트 로드: 둥근모(픽셀 한글), VT323(레트로 전광판 숫자) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'DungGeunMo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-pink: #ffeef5;
+            --hot-pink: #ff1493;
+            --baby-pink: #ffb6c1;
+            --white: #ffffff;
+            --black: #111111;
+            --silver: #d1d5db;
+            --neon-blue: #00ffff;
+            --lcd-bg: #1a1a1a;
+            --lcd-text: #ff1493; /* 핫핑크 액정 텍스트로 변경 */
+            --border-thick: 3px solid #111111;
+            --shadow-pixel: 5px 5px 0px #ff1493;
+            --shadow-black: 5px 5px 0px #111111;
+        }
+
+        body {
+            background-color: var(--bg-pink);
+            background-image: 
+                linear-gradient(45deg, var(--baby-pink) 25%, transparent 25%, transparent 75%, var(--baby-pink) 75%, var(--baby-pink)), 
+                linear-gradient(45deg, var(--baby-pink) 25%, transparent 25%, transparent 75%, var(--baby-pink) 75%, var(--baby-pink));
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: var(--black);
+            font-family: 'DungGeunMo', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            /* Y2K 픽셀 커서 느낌 */
+            cursor: crosshair; 
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 👑 상단 전광판 (폴더폰 외부 액정 스타일) */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: var(--border-thick);
+            padding: 15px 0;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .lcd-board {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--lcd-bg);
+            border: 5px inset var(--silver);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 15px rgba(255, 20, 147, 0.5); /* 핑크빛 백라이트 효과 */
+            position: relative;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lcd-title {
+            color: var(--silver);
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .lcd-title span {
+            color: var(--neon-blue);
+            animation: blink 1s infinite;
+        }
+
+        .lcd-balance {
+            font-family: 'VT323', monospace;
+            font-size: 48px;
+            color: var(--lcd-text);
+            text-shadow: 0 0 8px var(--lcd-text);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .lcd-spent {
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            color: var(--white);
+            margin-top: 5px;
+            text-shadow: 0 0 3px var(--neon-blue);
+        }
+
+        /* BGM 버튼 */
+        .bgm-btn {
+            background: var(--black);
+            color: var(--hot-pink);
+            border: 2px dashed var(--hot-pink);
+            border-radius: 5px;
+            padding: 6px 15px;
+            font-family: 'DungGeunMo', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 3px 3px 0 var(--baby-pink);
+            transition: all 0.1s;
+        }
+
+        .bgm-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0px 0px 0 var(--baby-pink);
+        }
+
+        main {
+            margin-top: 200px; /* 헤더 공간 확보 */
+            max-width: 1200px;
+            width: 90%;
+            padding-bottom: 100px;
+        }
+
+        /* 메인 타이틀 박스 */
+        .title-box {
+            text-align: center;
+            background: var(--white);
+            border: var(--border-thick);
+            padding: 30px 20px;
+            box-shadow: var(--shadow-pixel);
+            margin-bottom: 50px;
+            position: relative;
+            background-image: repeating-linear-gradient(45deg, #fff, #fff 10px, #fff5f8 10px, #fff5f8 20px);
+        }
+
+        .title-box h1 {
+            color: var(--hot-pink);
+            font-size: 32px;
+            margin: 0;
+            text-shadow: 2px 2px 0px var(--black);
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .title-box p {
+            font-size: 15px;
+            color: #333;
+            margin-top: 15px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.8);
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px dashed var(--black);
+        }
+
+        .deco-sticker {
+            position: absolute;
+            font-size: 35px;
+            animation: floating 3s ease-in-out infinite;
+        }
+        .sticker-1 { top: -20px; left: -15px; transform: rotate(-15deg); }
+        .sticker-2 { bottom: -20px; right: -15px; transform: rotate(15deg); }
+        .sticker-3 { top: -20px; right: -15px; transform: rotate(20deg); }
+
+        /* 카테고리 헤더 */
+        .category-title {
+            background: var(--hot-pink);
+            color: var(--white);
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 20px;
+            border: var(--border-thick);
+            box-shadow: 4px 4px 0 var(--black);
+            margin-bottom: 25px;
+            transform: rotate(-2deg);
+            position: relative;
+        }
+
+        .category-title::before {
+            content: "✦";
+            position: absolute;
+            left: -15px;
+            top: -10px;
+            color: var(--neon-blue);
+            font-size: 24px;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        /* 아이템 그리드 */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        /* 개별 아이템 카드 */
+        .item-card {
+            background: var(--white);
+            border: var(--border-thick);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--shadow-black);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px) translate(-5px, -5px);
+            box-shadow: 10px 10px 0px var(--hot-pink);
+            border-color: var(--hot-pink);
+        }
+
+        .item-image-box {
+            width: 100%;
+            height: 140px;
+            background: #fdf5f8;
+            border: 2px dashed var(--hot-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .item-rarity {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--black);
+            color: var(--neon-blue);
+            font-size: 11px;
+            padding: 3px 8px;
+            border: 1px solid var(--white);
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+        }
+
+        .item-name {
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            height: 45px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-price {
+            color: var(--hot-pink);
+            font-size: 17px;
+            margin-bottom: 15px;
+            background: var(--black);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .item-controls {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            padding: 5px;
+            border: 2px solid var(--silver);
+        }
+
+        .qty-btn {
+            background: var(--white);
+            border: 2px solid var(--black);
+            width: 35px;
+            height: 35px;
+            font-family: 'DungGeunMo', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 var(--silver);
+        }
+
+        .qty-btn:hover { background: var(--baby-pink); }
+        .qty-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0; }
+
+        .qty-display {
+            color: var(--black);
+            font-family: 'VT323', monospace;
+            font-size: 26px;
+            padding: 0 10px;
+            font-weight: bold;
+        }
+
+        /* 📸 영수증 영역 */
+        .receipt-container {
+            background: #fffdf5; /* 영수증 종이 느낌 */
+            border: var(--border-thick);
+            padding: 40px 30px;
+            margin-top: 30px;
+            box-shadow: 10px 10px 0 var(--black);
+            position: relative;
+        }
+
+        .receipt-header {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed var(--black);
+            padding-bottom: 15px;
+        }
+
+        .receipt-header span { color: var(--hot-pink); }
+        .receipt-meta { font-size: 13px; color: #666; font-family: 'VT323', monospace; letter-spacing: 1px; }
+
+        .receipt-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-height: 150px;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            padding: 10px 0;
+            border-bottom: 1px dotted #999;
+            align-items: center;
+        }
+
+        .receipt-item-name { flex: 2; padding-right: 10px; line-height: 1.3; }
+        .receipt-item-qty { flex: 0.5; text-align: center; font-family: 'VT323', monospace; font-size: 18px; }
+        .receipt-item-price { flex: 1.5; text-align: right; font-weight: bold; }
+
+        .receipt-total {
+            margin-top: 25px;
+            border-top: 3px dashed var(--black);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--hot-pink);
+        }
+
+        .receipt-barcode {
+            font-family: 'VT323', monospace;
+            font-size: 50px;
+            text-align: center;
+            margin-top: 30px;
+            letter-spacing: -3px;
+            color: var(--black);
+        }
+
+        /* 캡처 버튼 */
+        .capture-btn-wrapper {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 50px;
+        }
+
+        .capture-btn {
+            background: var(--hot-pink);
+            color: var(--white);
+            border: var(--border-thick);
+            padding: 18px 35px;
+            font-family: 'DungGeunMo', sans-serif;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow-black);
+            transition: 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capture-btn::before {
+            content: "📸";
+            margin-right: 10px;
+        }
+
+        .capture-btn:hover {
+            background: var(--black);
+            color: var(--hot-pink);
+            box-shadow: var(--shadow-pixel);
+            transform: translateY(-3px);
+        }
+
+        .capture-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0;
+        }
+
+        /* 반응형 모바일 최적화 */
+        @media (max-width: 600px) {
+            .lcd-balance { font-size: 36px; }
+            .lcd-spent { font-size: 15px; }
+            header { padding: 10px 0; }
+            main { margin-top: 170px; }
+            .title-box h1 { font-size: 24px; }
+            .item-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .item-card { padding: 10px; }
+            .item-image-box { height: 100px; font-size: 45px; }
+            .item-name { font-size: 13px; height: 35px; }
+            .item-price { font-size: 14px; padding: 3px 5px; }
+            .qty-btn { width: 28px; height: 28px; font-size: 16px; }
+            .qty-display { font-size: 20px; }
+            .receipt-container { padding: 20px 15px; }
+            .receipt-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .receipt-item-qty { text-align: left; }
+            .receipt-item-price { text-align: left; color: var(--hot-pink); width: 100%; }
+        }
+
+        /* 유튜브 BGM용 히든 프레임 */
+        #bgm-frame { display: none; }
+    </style>
+</head>
+<body>
+
+    <iframe id="bgm-frame" src="" allow="autoplay"></iframe>
+
+    <header>
+        <div class="lcd-board">
+            <div class="lcd-title"><span>▶▶</span> SYSTEM: 100,000,000,000 KRW LOADED...</div>
+            <div class="lcd-balance" id="display-balance">100,000,000,000</div>
+            <div class="lcd-spent" id="display-spent">SPENT: 0 (0.00%)</div>
+        </div>
+        <button class="bgm-btn" onclick="toggleBgm()">🎵 Y2K 감성 BGM ON/OFF</button>
+    </header>
+
+    <main>
+        <div class="title-box">
+            <span class="deco-sticker sticker-1">🎀</span>
+            <span class="deco-sticker sticker-2">📱</span>
+            <span class="deco-sticker sticker-3">✨</span>
+            <h1>⚡ H.H. 1000억 갸루코어 플렉스 ⚡</h1>
+            <p>1,000억 원의 예산이 입금되었습니다.<br>밴드 무기부터 마라탕, 오타쿠 라이프까지 영혼을 담아 탕진해 보세요!</p>
+        </div>
+
+        <div id="shop-container"></div>
+
+        <div class="receipt-container" id="receipt-area">
+            <div class="receipt-header">
+                ✧ <span>H.H. FLEX RECEIPT</span> ✧<br>
+                <span class="receipt-meta">DATE: 2026-09-28 / STORE: Y2K-GALCORE-MALL</span>
+            </div>
+            <ul class="receipt-list" id="receipt-list">
+                <li style="text-align: center; color: #999; margin-top: 50px;">장바구니가 텅텅 비었습니다 (´• ω •`)</li>
+            </ul>
+            <div class="receipt-total">
+                <span>TOTAL AMNT:</span>
+                <span id="receipt-total-price">0 원</span>
+            </div>
+            <div class="receipt-barcode">||| ||||| |||| || |||||| |</div>
+        </div>
+
+        <div class="capture-btn-wrapper" id="capture-wrapper">
+            <button class="capture-btn" onclick="saveReceipt()">영수증 캡처해서 친구한테 자랑하기</button>
+        </div>
+    </main>
+
+    <!-- html2canvas CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        const MAX_BUDGET = 100000000000; // 1000억
+        let currentBalance = MAX_BUDGET;
+        let isBgmPlaying = false;
+
+        // 아이템 데이터베이스 (1020 K-걸즈 트렌드 + 대중 애니 + 무지성 가챠 + 겜덕 현질 + 건물주 테크)
+        const catalog = [
+            {
+                category: "⚔️ H.H. 멤버별 전용 악기 & 무기",
+                items: [
+                    { id: "w_mint", name: "[민트보컬] 음파 증폭 초진동 마이크 소드", price: 250000000, emoji: "🎤", rarity: "UR" },
+                    { id: "w_green", name: "[연두베이스] 중력 제어 4현 일렉 베이스 액스", price: 320000000, emoji: "🎸", rarity: "UR" },
+                    { id: "w_pink", name: "[핑크기타] 레이저 빔 라이플 탑재 커스텀 V 기타", price: 350000000, emoji: "⚡", rarity: "UR" },
+                    { id: "w_yellow", name: "[옐로우드럼] 대지진 파쇄 충격파 드럼 스틱 쌍검", price: 280000000, emoji: "🥁", rarity: "UR" },
+                    { id: "w_white", name: "[화이트기타] 성광 플라즈마 실드 블레이드 ST 기타", price: 340000000, emoji: "🛡️", rarity: "UR" },
+                    { id: "w_black", name: "[블랙키보드] 암흑 물질 보이드 슬래셔 롤랜드 키타", price: 360000000, emoji: "🎹", rarity: "UR" }
+                ]
+            },
+            {
+                category: "🎟️ H.H. 공식 한정판 리미티드 굿즈",
+                items: [
+                    { id: "g_dolls", name: "H.H. 멤버별 10cm 수제 솜인형 6종 풀세트", price: 1500000, emoji: "🧸", rarity: "SR" },
+                    { id: "g_itabag", name: "H.H. 한정판 하이테크 LED 반짝이 홀로그램 이타백", price: 2000000, emoji: "👜", rarity: "SSR" },
+                    { id: "g_light", name: "원격 중앙 제어 메탈릭 실버 무대 응원봉 100개", price: 5000000, emoji: "🪄", rarity: "SR" },
+                    { id: "g_card", name: "멤버 전원 친필 사인 미공포 체키 포카 풀컬렉션", price: 10000000, emoji: "📸", rarity: "SSR" },
+                    { id: "g_hoodie", name: "H.H. 록 스피릿 야광 오버핏 후드집업 색깔별 소장", price: 3000000, emoji: "🧥", rarity: "R" },
+                    { id: "g_vip", name: "월드투어 VVIP 백스테이지 프리패스 목걸이", price: 15000000, emoji: "🎫", rarity: "LEGEND" }
+                ]
+            },
+            {
+                category: "🎰 무지성 가챠 & 갓챠 도파민 폭발",
+                items: [
+                    { id: "gacha_subculture", name: "[갓챠] 서브컬처 모바일 게임 올캐릭 풀돌풀강 가챠 현질", price: 5000000000, emoji: "📱", rarity: "MYTH" },
+                    { id: "gacha_capsule", name: "[가챠] 오사카 폰바시 캡슐토이 가챠 머신 500대 통째로 돌리기", price: 300000000, emoji: "🎰", rarity: "UR" },
+                    { id: "gacha_poka", name: "[가챠] K-POP 최애 미공포 포토카드 10,000장 연속 언박싱 가챠", price: 200000000, emoji: "🃏", rarity: "SSR" },
+                    { id: "gacha_pokemon", name: "[가챠] 포켓몬 카드 초판본(1st Edition) PSA10 갓챠 팩 싹쓸이", price: 3000000000, emoji: "⚡", rarity: "LEGEND" },
+                    { id: "gacha_luckybox", name: "[가챠] 샤넬/에르메스/루이비통 럭키박스 100개 무지성 당기기", price: 1500000000, emoji: "🎁", rarity: "UR" },
+                    { id: "gacha_yugioh", name: "[가챠] 유희왕 푸른 눈의 백룡 초희귀 레어 카드 팩 올인", price: 800000000, emoji: "🐉", rarity: "UR" }
+                ]
+            },
+            {
+                category: "🎬 대중적 인기 애니 & 2D 최애 성지순례",
+                items: [
+                    { id: "ani_jujutsu", name: "[주술회전] 고죠 사토루 1:1 등신대 & 무량공처 컨셉룸 대관", price: 500000000, emoji: "👁️", rarity: "UR" },
+                    { id: "ani_oshinoko", name: "[최애의 아이] B코마치 고척돔 단독 라이브 무대 독점 VIP석", price: 800000000, emoji: "🌟", rarity: "UR" },
+                    { id: "ani_kimetsu", name: "[귀멸의 칼날] 무한성 테마파크 1년 독점 대관 & 주(柱) 총출동 파티", price: 2500000000, emoji: "⚔️", rarity: "LEGEND" },
+                    { id: "ani_shinchan", name: "[짱구는 못말려] 초코비 회사 주식 100% 상장 매수 & 평생 무한 공급", price: 1000000000, emoji: "🐊", rarity: "SSR" },
+                    { id: "ani_conan", name: "[명탐정 코난] 마취침 시계 & 터보 스케이트보드 실물 커스텀 제작", price: 400000000, emoji: "⚽", rarity: "SSR" },
+                    { id: "ani_haikyu", name: "[하이큐!!] 카라스노 체육관 실물 건축 & 도쿄 성지순례 패키지", price: 1200000000, emoji: "🏐", rarity: "UR" },
+                    { id: "ani_slamdunk", name: "[슬램덩크] 산왕전 1쇄 한정판 & 북산 유니폼 친필사인 세트", price: 600000000, emoji: "🏀", rarity: "SSR" },
+                    { id: "ani_onepiece", name: "[원피스] 악마의 열매 순금 1:1 레플리카 & 써니호 크루즈 전세", price: 3000000000, emoji: "☠️", rarity: "LEGEND" },
+                    { id: "ani_spyfamily", name: "[스파이 패밀리] 아냐 키메라 인형 1만개 매입 & 테마파크 조성", price: 700000000, emoji: "🥜", rarity: "SSR" },
+                    { id: "ani_chiikawa", name: "[치이카와] 먼작귀/치이카와 랜드 단독 대관 & 전종 인형 매입", price: 2000000000, emoji: "🐹", rarity: "UR" },
+                    { id: "ani_gintama", name: "[은혼] 해결사 사무소 실물 건축 & 긴토키 순금 피규어", price: 1500000000, emoji: "🍡", rarity: "UR" },
+                    { id: "ani_hxh", name: "[헌터x헌터] 토가시 작가 연재 촉진 VVIP 전용 헬스케어 후원", price: 5000000000, emoji: "🕷️", rarity: "MYTH" }
+                ]
+            },
+            {
+                category: "🎮 겜덕 현질 & 사이버 도파민",
+                items: [
+                    { id: "game_ow", name: "[오버워치] 전 영웅 올스킨 & 신화 스킨 & 황금 무기 현질 풀종결", price: 300000000, emoji: "🔫", rarity: "SSR" },
+                    { id: "game_roblox", name: "[로블록스] 100억 로벅스 충전 & 한정판 코스튬 싹쓸이", price: 1500000000, emoji: "🧱", rarity: "UR" },
+                    { id: "game_lol", name: "[LoL] 전 세계 모든 한정판/신화 스킨 & 올챔프 현질 종결", price: 500000000, emoji: "⚔️", rarity: "SSR" },
+                    { id: "game_steam", name: "[스팀] 스팀 상점 내 전 세계 모든 게임 & DLC 통째로 계정 구매", price: 3500000000, emoji: "🕹️", rarity: "LEGEND" },
+                    { id: "game_mmo", name: "[MMORPG] 종결급 신화 무기 23성 강화 & 전설 아바타 풀 현질", price: 5000000000, emoji: "💎", rarity: "MYTH" }
+                ]
+            },
+            {
+                category: "🍡 1020 K-걸즈 혈중 마라 농도 & 소확행",
+                items: [
+                    { id: "k_mara", name: "마라탕+꿔바로우 평생 매일 3끼 VVIP 식권", price: 50000000, emoji: "🍲", rarity: "SSR" },
+                    { id: "k_tang", name: "왕가탕후루 전 지점 1년 내내 종류별 프리패스권", price: 30000000, emoji: "🍓", rarity: "SR" },
+                    { id: "k_dubai", name: "두바이 초콜릿 원조 픽업용 두바이 당일치기 전세기", price: 150000000, emoji: "🍫", rarity: "UR" },
+                    { id: "k_olive", name: "올리브영 메가세일 전 매장 통째로 털어담기 패스", price: 100000000, emoji: "🛍️", rarity: "UR" },
+                    { id: "k_color", name: "퍼스널 컬러 & 골격 진단 국내 최고 전문가 평생 고용", price: 300000000, emoji: "🎨", rarity: "SSR" },
+                    { id: "k_popup", name: "성수동 인기 팝업스토어 웨이팅 없이 평생 하이패스권", price: 10000000, emoji: "🎟️", rarity: "UR" }
+                ]
+            },
+            {
+                category: "✈️ 일본 원정 덕질 & 럭셔리 여행",
+                items: [
+                    { id: "t_flight", name: "도쿄행 비행기 전 좌석 퍼스트클래스 전세기 렌트", price: 1500000000, emoji: "🛩️", rarity: "LEGEND" },
+                    { id: "t_usj", name: "USJ 익스프레스 프리패스 및 닌텐도 월드 단독 독점", price: 300000000, emoji: "🍄", rarity: "UR" },
+                    { id: "t_ryokan", name: "교토 최고급 가이세키 온천 료칸 2주 전세 대관", price: 600000000, emoji: "♨️", rarity: "SSR" },
+                    { id: "t_donki", name: "오사카 돈키호테 매장 VIP 싹쓸이 전용 카트 100개", price: 200000000, emoji: "🛒", rarity: "SR" },
+                    { id: "t_maid", name: "아키하바라 메이드 카페 VVIP 전세 단독 파티", price: 150000000, emoji: "🍰", rarity: "SR" }
+                ]
+            },
+            {
+                category: "👑 하이엔드 로망 & 건물주 테크",
+                items: [
+                    { id: "f_bld", name: "홍대 메인 스트리트 초호화 핫핑크 꼬마빌딩 건물주", price: 38000000000, emoji: "🏰", rarity: "MYTH" },
+                    { id: "f_stadium", name: "전 세계 대형 스타디움 통째로 빌려 H.H. 단독 콘서트", price: 35000000000, emoji: "🏟️", rarity: "MYTH" },
+                    { id: "f_house", name: "한남동 100평 하이엔드 펜트하우스 현금박치기", price: 15000000000, emoji: "🏙️", rarity: "MYTH" },
+                    { id: "f_studio", name: "완벽 방음 핫핑크 큐빅 데코 H.H. 전용 연습실 빌딩", price: 15000000000, emoji: "🏢", rarity: "LEGEND" },
+                    { id: "f_bag", name: "샤넬/에르메스 클래식백 색깔별 올컬렉션 오픈런 대행", price: 1200000000, emoji: "👜", rarity: "UR" },
+                    { id: "f_car", name: "파스텔 핑크 래핑 포르쉐 타이칸 4S 당일 출고", price: 280000000, emoji: "🚙", rarity: "UR" }
+                ]
+            }
+        ];
+
+        // 수량 상태 관리 객체 초기화
+        const inventory = {};
+        catalog.forEach(cat => {
+            cat.items.forEach(item => inventory[item.id] = 0);
+        });
+
+        // 원화 포맷팅 함수 (억/만 단위 직관적 변환)
+        function formatMoney(amount) {
+            if (amount === 0) return "0 원";
+            let result = "";
+            const eok = Math.floor(amount / 100000000);
+            const man = Math.floor((amount % 100000000) / 10000);
+            const won = amount % 10000;
+
+            if (eok > 0) result += `${eok.toLocaleString()}억 `;
+            if (man > 0) result += `${man.toLocaleString()}만 `;
+            if (won > 0 && eok === 0) result += `${won.toLocaleString()} `;
+            return result.trim() + "원";
+        }
+
+        // 콤마 포맷팅
+        function formatNumber(num) {
+            return num.toLocaleString();
+        }
+
+        // 초기 화면 렌더링
+        function initShop() {
+            const container = document.getElementById('shop-container');
+            container.innerHTML = '';
+            catalog.forEach(cat => {
+                let html = `<div class="category-title">${cat.category}</div>`;
+                html += `<div class="item-grid">`;
+                
+                cat.items.forEach(item => {
+                    html += `
+                        <div class="item-card">
+                            <div class="item-rarity">${item.rarity}</div>
+                            <div class="item-image-box">${item.emoji}</div>
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">${formatMoney(item.price)}</div>
+                            <div class="item-controls">
+                                <button class="qty-btn" onclick="updateQty('${item.id}', -1, ${item.price})">-</button>
+                                <span class="qty-display" id="qty-${item.id}">0</span>
+                                <button class="qty-btn" onclick="updateQty('${item.id}', 1, ${item.price})">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // 수량 업데이트 및 정산 로직
+        window.updateQty = function(id, delta, price) {
+            if (delta > 0) {
+                if (currentBalance >= price) {
+                    currentBalance -= price;
+                    inventory[id]++;
+                } else {
+                    // Y2K 스타일 경고 메시지
+                    alert("🚨 삐빅- 한도 초과입니다! 잔액이 부족해요 (T_T) 🚨\n더 이상 담을 수 없습니다.");
+                    return;
+                }
+            } else if (delta < 0) {
+                if (inventory[id] > 0) {
+                    currentBalance += price;
+                    inventory[id]--;
+                }
+            }
+
+            // UI 업데이트
+            document.getElementById(`qty-${id}`).innerText = inventory[id];
+            updateDashboard();
+            updateReceipt();
+        };
+
+        // 전광판 업데이트
+        function updateDashboard() {
+            document.getElementById('display-balance').innerText = formatNumber(currentBalance);
+            
+            const spent = MAX_BUDGET - currentBalance;
+            const percent = ((spent / MAX_BUDGET) * 100).toFixed(4);
+            document.getElementById('display-spent').innerText = `SPENT: ${formatNumber(spent)} (${percent}%)`;
+        }
+
+        // 영수증 업데이트
+        function updateReceipt() {
+            const list = document.getElementById('receipt-list');
+            list.innerHTML = '';
+            let hasItems = false;
+            let totalPrice = 0;
+
+            catalog.forEach(cat => {
+                cat.items.forEach(item => {
+                    if (inventory[item.id] > 0) {
+                        hasItems = true;
+                        const qty = inventory[item.id];
+                        const cost = item.price * qty;
+                        totalPrice += cost;
+
+                        const li = document.createElement('li');
+                        li.className = 'receipt-item';
+                        li.innerHTML = `
+                            <div class="receipt-item-name">${item.emoji} ${item.name}</div>
+                            <div class="receipt-item-qty">x${qty}</div>
+                            <div class="receipt-item-price">${formatMoney(cost)}</div>
+                        `;
+                        list.appendChild(li);
+                    }
+                });
+            });
+
+            if (!hasItems) {
+                list.innerHTML = '<li style="text-align: center; color: #999; margin-top: 50px;">장바구니가 텅텅 비었습니다 (´• ω •`)</li>';
+            }
+
+            document.getElementById('receipt-total-price').innerText = formatMoney(totalPrice);
+        }
+
+        // BGM 토글 로직
+        window.toggleBgm = function() {
+            const iframe = document.getElementById('bgm-frame');
+            if (!isBgmPlaying) {
+                // 신스팝/치이카와 감성의 저작권 프리 8bit 루프 브금 연동 (autoplay)
+                iframe.src = "https://www.youtube.com/embed/57I_bNWeX_U?autoplay=1&loop=1&playlist=57I_bNWeX_U";
+                isBgmPlaying = true;
+                alert("💖 Y2K 브금이 켜졌습니다! (소리가 안 나면 브라우저 상단 탭에서 '사이트 소리 켜기'를 확인해 주세요)");
+            } else {
+                iframe.src = "";
+                isBgmPlaying = false;
+                alert("🔇 브금이 꺼졌습니다.");
+            }
+        };
+
+        // 영수증 이미지 캡처 및 저장 기능
+        window.saveReceipt = function() {
+            const receiptArea = document.getElementById('receipt-area');
+            const captureBtn = document.getElementById('capture-wrapper');
+            
+            // 캡처 오류 방지를 위해 화면 상단으로 포커스 살짝 올림
+            window.scrollTo({
+                top: receiptArea.offsetTop - 150,
+                behavior: 'smooth'
+            });
+            
+            setTimeout(() => {
+                html2canvas(receiptArea, {
+                    backgroundColor: "#fffdf5", // 영수증 종이 배경색 유지
+                    scale: 2 // 고해상도 캡처
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'HH_100B_Galcore_Receipt.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                }).catch(err => {
+                    alert("이미지 저장에 실패했습니다. (T_T) " + err);
+                });
+            }, 300); // 스크롤 이동 후 캡처되도록 약간의 딜레이
+        };
+
+        // 앱 초기화 로드
+        window.onload = () => {
+            initShop();
+            updateDashboard();
+        };
+    </script>
+</body>
+</html>
